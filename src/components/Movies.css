@@ -1,0 +1,7 @@
+.movies .movie img{width:230px; height:345px; padding:10px; border:1px solid #5D2523; border-right:2px solid #5D2523; border-bottom:2px solid #5D2523;}
+.movies .movie .movie-data{height:40%; max-width:60%; padding:10px 0;}
+.movie-data .movie-title,
+.movie-data .movie-year,
+.movie-data ul{ margin-bottom:10px;}
+.movie-data ul{color:#9D5642}
+.movie-detail{height:100px; overflow: hidden; padding:10px 0; text-overflow:ellipsis; white-space: nowrap;}

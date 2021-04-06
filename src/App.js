@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from "axios";
 import Movie from './components/Movies'
+import './App.css';
+import './Components/Movies.css';
+
 
 class App extends React.Component{
   // 삼항비교연산 : isLoading이 true면 "Loading"실행/false면 "All~"실행
@@ -17,7 +20,7 @@ class App extends React.Component{
       data:{
         data:{movies},
       },
-    }    = await axios.get('https://yts.mx/api/v2/list_movies.json');
+    }    = await axios.get('https://yts.mx/api/v2/list_movies.json?sort_by=rating');
     console.log(movies);
 
     this.setState({isLoading:false, movies:movies});
@@ -38,22 +41,33 @@ class App extends React.Component{
 
   render(){
     // const isLoading = this.state.isLoading;
+    // this: app이라는 component범위 안의 모든 것 포함
     const {isLoading, movies} = this.state;
    
     return (
       // 최상위 태그는 비워놔도 됨. <></>
 
-      <div>
-        {isLoading ? "Loading....": movies.map((movie=>{
-          console.log(movie);
-          return <Movie 
-          key={movie.id}
-          title={movie.title}
-          year={movie.year}
-          rating={movie.rating}
-          des={movie.summary}/>;
-        }))}
-      </div>
+      <section className="container">
+        {isLoading ? (
+        <div className="loader"> Loading....</div>
+        ) : (  
+        <div className="movies">
+          {movies.map((movie)=>(
+            <Movie 
+            key={movie.id}
+            title={movie.title}
+            year={movie.year}
+            genres={movie.genres}
+            poster={movie.medium_cover_image}
+            detail={movie.summary}/>
+          ))};
+         
+  
+        </div>
+        )}        
+          
+        
+      </section>
     );
   }
 }

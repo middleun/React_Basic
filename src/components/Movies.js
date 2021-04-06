@@ -1,13 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Movie({title, year, rating, des }){
+// movies.map=>다음에 {} 사용하면 return 필요/ ()사용하면 return안써도 됨
+function Movie({title, year, genres, poster, detail }){
     return (
-        <div>
-            <h1>{title}</h1>
-            <h3>{year} / {rating}</h3>
-            <p>{des}</p>
+        <div className="movie">
+            <img src={poster} alt={title} onError={(e)=>{e.target.onerror = null; e.target.src="https://www.flaticon.com/svg/vstatic/svg/1773/1773692.svg?token=exp=1617691270~hmac=c59780b3463a77467e599c525c6a5e4f";}}></img>           
+            <div className="movie-data">
+                <h1 className="movie-title">{title}</h1>
+                <h3 className="movie-year">{year}</h3>
+                <ul>
+                    {genres.map((genre, idx)=>{
+                        return(
+                            <li key={idx}>{genre}</li>
+                        )
+                    })}
+                </ul>
+                <p className="movie-detail">{detail}</p>
 
+            </div>
         </div>
     )
 }
@@ -15,8 +26,9 @@ function Movie({title, year, rating, des }){
 Movie.propType = {
     title:PropTypes.string.isRequired,
     year:PropTypes.number.isRequired,
-    rating:PropTypes.number.isRequired,
-    des:PropTypes.string.isRequired,
+    genres:PropTypes.arrayOf(PropTypes.string).isRequired,
+    poster:PropTypes.string.isRequired,
+    detail:PropTypes.string.isRequired,
 
 }
 
