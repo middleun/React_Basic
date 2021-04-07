@@ -1,0 +1,5 @@
+.nav{position: fixed;z-index: 1; top:50%; left:20px; display: flex; flex-direction: column; background-color:#5D2523; padding:10px 20px;
+box-shadow: 0 13px 27px -5px rgba(0, 0, 0, 0.274); border:1px solid #fff;}
+
+.nav a{text-decoration: none; color:#fff; text-transform: uppercase; font-size: 14px; text-align: center; font-weight: 600;}
+.nav a:not(:last-child){margin-bottom: 20px;}
